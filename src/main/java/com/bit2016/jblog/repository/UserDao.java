@@ -22,4 +22,8 @@ public class UserDao {
 		
 		return sqlSession.selectOne("user.login", map);
 	}
+	
+	public void join(UserVo vo) {
+		sqlSession.insert("user.join", vo);
+	}
 }

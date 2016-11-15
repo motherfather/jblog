@@ -16,4 +16,8 @@ public class UserService {
 		UserVo userVo = userDao.login(id, password);
 		return userVo;
 	}
+	
+	public void join(UserVo vo) {
+		userDao.join(vo);
+	}
 }

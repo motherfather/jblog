@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!doctype html>
 <html>
@@ -15,32 +17,32 @@
 		<ul class="menu">
 		<c:choose>
 			<c:when test="${empty authUser }">
-				<li><a href="">로그인</a></li>
-				<li><a href="">회원가입</a></li>
+				<li><a href="${pageContext.request.contextPath }/user/loginform">로그인</a></li>
+				<li><a href="${pageContext.request.contextPath }/user/joinform">회원가입</a></li>
 			</c:when>
 			<c:otherwise>
-				<li><a href="">로그아웃</a></li>
+				<li><a href="${pageContext.request.contextPath }">로그아웃</a></li>
 				<li><a href="">내블로그</a></li>
 			</c:otherwise>
 		</c:choose>
 		</ul>
-		<form:form class="join-form" id="join-form" method="post" action="${pageContext.request.contextPath }/user/joinsuccess">
+		<form:form modelAttribute="userVo" class="join-form" id="join-form" method="post" action="${pageContext.request.contextPath }/user/join">
 			<label class="block-label" for="name">이름</label>
 			<form:input path="name" />
 			<p style="color:red">
-			<form:error path="name" />
+			<form:errors path="name" />
 			</p>
-			<label class="block-label" for="blog-id">아이디</label>
+			<label class="block-label" for="id">아이디</label>
 			<form:input path="id" />
 			<input id="btn-checkemail" type="button" value="id 중복체크">
 			<img id="img-checkemail" style="display: none;" src="${pageContext.request.contextPath}/assets/images/check.png">
 			<p style="color:red">
-			<form:error path="id" />
+			<form:errors path="id" />
 			</p>
 			<label class="block-label" for="password">패스워드</label>
-			<form:input path="password"  />
+			<form:password path="password"  />
 			<p style="color:red">
-			<form:error path="id" />
+			<form:errors path="password" />
 			</p>
 			<fieldset>
 				<legend>약관동의</legend>
