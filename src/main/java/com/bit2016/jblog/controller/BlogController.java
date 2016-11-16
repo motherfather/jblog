@@ -17,8 +17,8 @@ public class BlogController {
 	
 	@RequestMapping("")
 	public String index(@PathVariable String userId, Model model) {
-		Object info = blogService.checkBlog(userId);
-		
+		String info = blogService.checkBlog(userId);
+
 		if (info == null) {
 			return "redirect:/";
 		}

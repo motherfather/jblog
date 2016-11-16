@@ -2,15 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="blog">
+	<resultMap id="rsm" class="com.bit2016.jblog">
+		<result property=/>
+	</resultMap>
 	<insert id="createBlog" parameterType="long">
 		<![CDATA[
 			insert into blog values(#{no }, '기본블로그', 'logo.jpg')		
 		]]>
 	</insert>
 	
-	<select id="checkBlog" parameterType="String" resultType="Object">
+	<select id="checkBlog" parameterType="string" resultMap="string">
 		<![CDATA[
-			select * from blog, users, category where blog.no=users.no and users.no=category.users_no and id=#{id }
+			select id from users where id=#{id }
 		]]>
 	</select>
+	
 </mapper>
