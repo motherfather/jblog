@@ -17,7 +17,7 @@ import com.bit2016.jblog.vo.UserVo;
 public class UserController {
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@RequestMapping("/loginform")
 	public String loginform() {

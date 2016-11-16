@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserVo {
-	
+
 	@NotEmpty
 	private String id;
 	

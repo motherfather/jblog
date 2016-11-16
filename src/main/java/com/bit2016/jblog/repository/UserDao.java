@@ -23,7 +23,16 @@ public class UserDao {
 		return sqlSession.selectOne("user.login", map);
 	}
 	
-	public void join(UserVo vo) {
+	public boolean checkId(String id) {
+		if (sqlSession.selectOne("user.checkId", id) != null) {
+			return true; 
+		}
+		return false;
+	}
+	
+	public Long join(UserVo vo) {
 		sqlSession.insert("user.join", vo);
+		return vo.getNo();
+		// sqlSession.insert("blog.insert", vo.getNo()); // Dao마다 쿼리는 1개만 쏘는게 좋다!!!!!
 	}
 }
