@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit2016.jblog.vo.CategoryVo;
+
 @Repository
 public class CategoryDao {
 	
@@ -16,7 +18,7 @@ public class CategoryDao {
 		sqlSession.insert("category.createCategory", no);
 	}
 	
-	public List<String> listCate(String userId) {
+	public List<CategoryVo> listCate(String userId) {
 		return sqlSession.selectList("category.listCate", userId);
 	}
 }

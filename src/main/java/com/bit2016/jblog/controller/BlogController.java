@@ -1,6 +1,7 @@
 package com.bit2016.jblog.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bit2016.jblog.service.BlogService;
 import com.bit2016.jblog.vo.BlogVo;
+import com.bit2016.jblog.vo.CategoryVo;
 import com.bit2016.jblog.vo.UserVo;
 import com.bit2016.security.Auth;
 import com.bit2016.security.AuthUser;
@@ -21,12 +23,15 @@ public class BlogController {
 	@Autowired
 	BlogService blogService;
 	
+//	@Autowired
+//	PostService postService;
+	
 	@RequestMapping({"", "/{postNo}"}) // [참고] @PathVariable Optional<Long> no
-	public String index(@PathVariable String userId, Model model, @PathVariable Long postNo) {
+	public String index(@PathVariable String userId, Model model, @PathVariable Optional<Long> postNo) {
 		String info = blogService.checkBlog(userId);
-		List<String> listCate = blogService.listCate(userId);
+		List<CategoryVo> listCate = blogService.listCate(userId);
 		BlogVo infoBlog = blogService.infoBlog(userId);
-		Long no1 = postNo == null ? 0 : postNo;
+//		postNo.isPresent().
 
 		if (info == null) {
 			return "redirect:/";

@@ -8,9 +8,9 @@
 		]]>
 	</insert>
 	
-	<select id="listCate" parameterType="string" resultType="string">
+	<select id="listCate" parameterType="string" resultType="categoryvo">
 		<![CDATA[
-			select c.name from category c, blog b, users u where u.no=b.no and b.no=c.users_no and u.id=#{id }	
+			select * from category c, blog b, users u where u.no=b.users_no and b.users_no=c.blog_no and u.id=#{id }	
 		]]>
 	</select>
 </mapper>

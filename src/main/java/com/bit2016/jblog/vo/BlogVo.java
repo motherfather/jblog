@@ -1,15 +1,15 @@
 package com.bit2016.jblog.vo;
 
 public class BlogVo {
-	private Long no;
+	private Long usersNo;
 	private String title;
 	private String logo;
 	
-	public Long getNo() {
-		return no;
+	public Long getUsersNo() {
+		return usersNo;
 	}
-	public void setNo(Long no) {
-		this.no = no;
+	public void setUsersNo(Long usersNo) {
+		this.usersNo = usersNo;
 	}
 	public String getTitle() {
 		return title;
@@ -26,6 +26,6 @@ public class BlogVo {
 	
 	@Override
 	public String toString() {
-		return "BlogVo [no=" + no + ", title=" + title + ", logo=" + logo + "]";
+		return "BlogVo [usersNo=" + usersNo + ", title=" + title + ", logo=" + logo + "]";
 	}
 }

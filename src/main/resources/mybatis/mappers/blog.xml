@@ -16,7 +16,7 @@
 	
 	<select id="infoBlog" parameterType="string" resultType="blogvo">
 		<![CDATA[
-			select b.title, b.logo from blog b, users u where b.no= u.no and u.id=#{id }
+			select b.title, b.logo from blog b, users u where b.users_no= u.no and u.id=#{id }
 		]]>
 	</select>
 </mapper>

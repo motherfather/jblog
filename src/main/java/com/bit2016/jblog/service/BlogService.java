@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bit2016.jblog.repository.BlogDao;
 import com.bit2016.jblog.repository.CategoryDao;
 import com.bit2016.jblog.vo.BlogVo;
+import com.bit2016.jblog.vo.CategoryVo;
 
 @Service
 public class BlogService {
@@ -22,7 +23,7 @@ public class BlogService {
 		return blogDao.checkBlog(userId);
 	}
 	
-	public List<String> listCate(String userId) {
+	public List<CategoryVo> listCate(String userId) {
 		return categoryDao.listCate(userId);
 	}
 	

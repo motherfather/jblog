@@ -12,7 +12,7 @@
 			<h2>카테고리</h2>
 			<ul>
 			<c:forEach items="${listCate }" var="list" >
-				<li><a href="">${list }</a></li>
+				<li><a href="${pageContext.request.contextPath }/${info }/${list.no }">${list.name }</a></li>
 			</c:forEach>
 			</ul>
 		</div>

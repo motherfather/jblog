@@ -5,7 +5,7 @@ public class CategoryVo {
 	private String name;
 	private String description;
 	private String regDate;
-	private Long usersNO;
+	private Long blogNO;
 	public Long getNo() {
 		return no;
 	}
@@ -30,15 +30,16 @@ public class CategoryVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public Long getUsersNO() {
-		return usersNO;
+	public Long getBlogNO() {
+		return blogNO;
 	}
-	public void setUsersNO(Long usersNO) {
-		this.usersNO = usersNO;
+	public void setBlogNO(Long blogNO) {
+		this.blogNO = blogNO;
 	}
+	
 	@Override
 	public String toString() {
-		return "CategoryDao [no=" + no + ", name=" + name + ", description=" + description + ", regDate=" + regDate
-				+ ", usersNO=" + usersNO + "]";
+		return "CategoryVo [no=" + no + ", name=" + name + ", description=" + description + ", regDate=" + regDate
+				+ ", blogNO=" + blogNO + "]";
 	}
 }
