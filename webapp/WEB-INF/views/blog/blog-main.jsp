@@ -6,35 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JBlog</title>
+<title>${infoBlog.title }</title>
 <Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1>Spring 이야기</h1>
-			<ul>
-			<c:choose>
-				<c:when test="${empty authUser }">
-					<li><a href="${pageContext.request.contextPath }/user/loginform">로그인</a></li>
-					<li><a href="${pageContext.request.contextPath }/user/joinform">회원가입</a></li>
-				</c:when>	
-				<c:when test="${authUser.id==info }">
-					<li><a href="${pageContext.request.contextPath }/${authUser.id}">블로그 관리</a></li>
-					<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></li>
-				</c:when>
-				<c:otherwise>
-					<li><a href="${pageContext.request.contextPath }/${authUser.id}">내 블로그</a></li>
-					<li><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></li>
-				</c:otherwise>
-			</c:choose>
-			</ul>
-		</div>
+		<c:import url="/WEB-INF/views/include/header.jsp" />
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
 					<h4>Spring Camp 2016 참여기</h4>
 					<p>
+					<!-- <HTML editor> CKeditor/TinyMCE(추천)/Xinha/다음 오픈 에디터/네이버 스마트 에디터(추천) -->
 						스프링 캠프에서는 JVM(Java Virtual Machine) 기반 시스템의 백엔드(Back-end) 또는 서버사이드(Server-side)라고 칭하는 영역을 개발하는 애플리케이션 서버 개발에 관한 기술과 정보, 경험을 공유하는 컨퍼런스입니다.<br>
 						 핵심주제로 Java와 Spring IO Platform을 다루고 있으며, 그외 Architecture나 JVM Language, Software Development Process 등 애플리케이션 서버 개발에 필요한 다양한 주제를 다루려고 노력하고 있습니다.<br>
 						 우리는 같은 일을 하고, 같은 관심사를 가진 개발자들이지만 서로를 모릅니다.<br>
@@ -50,27 +33,8 @@
 				</ul>
 			</div>
 		</div>
-
-		<div id="extra">
-			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
-			</div>
-		</div>
-
-		<div id="navigation">
-			<h2>카테고리</h2>
-			<ul>
-			<c:forEach items="${info }" var="list" >
-				<li><a href="">${list }</a></li>
-			</c:forEach>
-			</ul>
-		</div>
-		
-		<div id="footer">
-			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2016
-			</p>
-		</div>
+		<c:import url="/WEB-INF/views/include/navigation.jsp" />
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</div>
 </body>
 </html>

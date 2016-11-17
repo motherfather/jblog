@@ -71,19 +71,7 @@ $(function() {
 </head>
 <body>
 	<div class="center-content">
-		<h1 class="logo">JBlog</h1>
-		<ul class="menu">
-		<c:choose>
-			<c:when test="${empty authUser }">
-				<li><a href="${pageContext.request.contextPath }/user/loginform">로그인</a></li>
-				<li><a href="${pageContext.request.contextPath }/user/joinform">회원가입</a></li>
-			</c:when>
-			<c:otherwise>
-				<li><a href="${pageContext.request.contextPath }">로그아웃</a></li>
-				<li><a href="">내블로그</a></li>
-			</c:otherwise>
-		</c:choose>
-		</ul>
+		<c:import url="/WEB-INF/views/include/headerMain.jsp"/>
 		<form:form modelAttribute="userVo" class="join-form" id="join-form" method="post" action="${pageContext.request.contextPath }/user/join">
 			<label class="block-label" for="name">이름</label>
 			<form:input path="name" />

@@ -4,6 +4,7 @@ public class BlogVo {
 	private Long no;
 	private String title;
 	private String logo;
+	
 	public Long getNo() {
 		return no;
 	}

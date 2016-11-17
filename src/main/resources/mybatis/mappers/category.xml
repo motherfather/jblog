@@ -7,4 +7,10 @@
 			insert into category values(category_seq.nextval, #{no }, '기본카테고리', '설명', sysdate)		
 		]]>
 	</insert>
+	
+	<select id="listCate" parameterType="string" resultType="string">
+		<![CDATA[
+			select c.name from category c, blog b, users u where u.no=b.no and b.no=c.users_no and u.id=#{id }	
+		]]>
+	</select>
 </mapper>
