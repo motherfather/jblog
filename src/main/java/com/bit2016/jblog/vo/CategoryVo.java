@@ -5,7 +5,14 @@ public class CategoryVo {
 	private String name;
 	private String description;
 	private String regDate;
-	private Long blogNO;
+	private Long blogNo;
+	
+	public Long getBlogNo() {
+		return blogNo;
+	}
+	public void setBlogNo(Long blogNo) {
+		this.blogNo = blogNo;
+	}
 	public Long getNo() {
 		return no;
 	}
@@ -30,16 +37,10 @@ public class CategoryVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public Long getBlogNO() {
-		return blogNO;
-	}
-	public void setBlogNO(Long blogNO) {
-		this.blogNO = blogNO;
-	}
 	
 	@Override
 	public String toString() {
 		return "CategoryVo [no=" + no + ", name=" + name + ", description=" + description + ", regDate=" + regDate
-				+ ", blogNO=" + blogNO + "]";
+				+ ", blogNo=" + blogNo + "]";
 	}
 }

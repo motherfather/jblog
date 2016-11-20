@@ -2,21 +2,87 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="blog">
+	<!-- <resultMap type="hashmap" id="testJoin">
+		<result column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="logo" property="logo"/>
+		<result column="name" property="name"/>
+	</resultMap> -->
+	<select id="blogMain" parameterType="string" resultType="map"> 
+		<![CDATA[
+			select u.id, c.name, c.no cNo, p.no pNo, p.TITLE post_title, p.CONTENT, to_char(p.REG_DATE, 'yyyy-mm-dd hh:mi:ss') reg_date 
+			from users u, blog b, category c, post p 
+			where u.no=b.users_no and b.USERS_NO=c.BLOG_NO and c.NO=p.CATEGORY_NO 
+			and u.id=#{id } order by pNo desc
+		]]>
+	</select>	
+	
 	<insert id="createBlog" parameterType="long">
 		<![CDATA[
 			insert into blog values(#{no }, '기본블로그', 'logo.jpg')		
 		]]>
 	</insert>
 
-	<select id="checkBlog" parameterType="string" resultType="string">
+	<select id="blogMain1" parameterType="map" resultType="map">
 		<![CDATA[
-			select id from users where id=#{id }
+			select u.id, c.name, c.no cNo, p.no pNo, p.TITLE post_title, p.CONTENT, to_char(p.REG_DATE, 'yyyy-mm-dd hh:mi:ss') reg_date 
+			from users u, blog b, category c, post p 
+			where u.no=b.users_no and b.users_no=c.blog_no and c.no=p.category_no
+			and id=#{userId } and c.no=#{cNo } order by pNo desc
 		]]>
 	</select>
 	
-	<select id="infoBlog" parameterType="string" resultType="blogvo">
+	<select id="blogMain2" parameterType="string" resultType="map">
 		<![CDATA[
-			select b.title, b.logo from blog b, users u where b.users_no= u.no and u.id=#{id }
+			select b.title, b.logo, c.name, c.no, u.id, u.no uNo 
+			from users u, blog b, category c 
+			where u.no=b.users_no and b.users_no=c.blog_no 
+			and id=#{id }
 		]]>
 	</select>
+	
+	<select id="mainPost" parameterType="string" resultType="map">
+		<![CDATA[
+			select *
+			from(select rownum, u.id, c.name, p.no, p.TITLE post_title, p.CONTENT, to_char(p.REG_DATE, 'yyyy-mm-dd hh:mi:ss') reg_date 
+						from users u, blog b, category c, post p 
+						where u.no=b.users_no and b.USERS_NO=c.BLOG_NO and c.NO=p.CATEGORY_NO 
+						and u.id=#{id } order by p.no desc)
+			where rownum=1 
+		]]>
+	</select>
+	
+	<select id="CPNo" parameterType="map" resultType="map">
+		<![CDATA[
+			select u.id, c.name, p.no, p.TITLE post_title, p.CONTENT, to_char(p.REG_DATE, 'yyyy-mm-dd hh:mi:ss') reg_date 
+			from users u, blog b, category c, post p 
+			where u.no=b.users_no and b.users_no=c.blog_no and c.no=p.category_no
+			and id=#{userId } and c.no=#{cNo } and p.no=#{pNo }
+		]]>
+	</select>
+	
+	<select id="PNo" parameterType="map" resultType="map">
+		<![CDATA[
+			select u.id, c.name, c.no cNo, p.no, p.TITLE post_title, p.CONTENT, to_char(p.REG_DATE, 'yyyy-mm-dd hh:mi:ss') reg_date 
+			from users u, blog b, category c, post p 
+			where u.no=b.users_no and b.users_no=c.blog_no and c.no=p.category_no
+			and id=#{userId } and p.no=#{pNo }
+		]]>
+	</select>
+	
+	<select id="PPerC" parameterType="map" resultType="long">
+		<![CDATA[
+			select max(p.no)
+			from users u, blog b, category c, post p 
+			where u.no=b.users_no and b.users_no=c.blog_no and c.no=p.category_no
+			and id=#{userId } and c.no=#{cNo }
+		]]>
+	</select>
+	
+	<update id="modify" parameterType="blogvo" >
+		<![CDATA[
+			update BLOG SET LOGO=#{logo }, title=#{title } 
+			WHERE users_no=#{usersNo }
+		]]>
+	</update>
 </mapper>

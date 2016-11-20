@@ -35,4 +35,8 @@ public class UserDao {
 		return vo.getNo();
 		// sqlSession.insert("blog.insert", vo.getNo()); // Dao마다 쿼리는 1개만 쏘는게 좋다!!!!!
 	}
+	
+	public Long getNo(String userId) {
+		return sqlSession.selectOne("user.getNo", userId);
+	}
 }

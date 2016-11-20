@@ -4,6 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<div id="footer">
 		<p>
-			<strong>${infoBlog.title }</strong> is powered by JBlog (c)2016
+			<strong>${list2[0].TITLE }</strong> is powered by JBlog (c)2016
 		</p>
 	</div>

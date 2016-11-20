@@ -6,28 +6,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JBlog</title>
-<Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
+<title>${list2[0].TITLE }</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 </head>
 <body>
 	<div id="container">
-		<c:import url="/WEB-INF/views/include/header.jsp" />
+		<c:import url="/WEB-INF/views/include/headerAdmin.jsp" />
 		<div id="wrapper">
 			<div id="content" class="full-screen">
-				<ul class="admin-menu">
-					<li><a href="">기본설정</a></li>
-					<li><a href="">카테고리</a></li>
-					<li class="selected">글작성</li>
-				</ul>
-				<form action="" method="post">
+				<c:import url="/WEB-INF/views/include/adminMenu.jsp">
+					<c:param name="menu" value="write"/>
+				</c:import>
+				<form action="${pageContext.request.contextPath }/${userId }/write" method="post">
 			      	<table class="admin-cat-write">
 			      		<tr>
 			      			<td class="t">제목</td>
 			      			<td>
 			      				<input type="text" size="60" name="title">
-				      			<select name="category">
-				      				<option>미분류</option>
-				      				<option>자바</option>
+				      			<select name="categoryNo">
+				      				<option value="0">미분류</option>
+				      				<c:forEach items="${list2 }" var="list2">
+					      				<option value="${list2.NO }">${list2.NAME }</option>
+				      				</c:forEach>
 				      			</select>
 				      		</td>
 			      		</tr>
@@ -45,5 +45,8 @@
 		</div>
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</div>
+	<div id="dialog" title="포스트 체크" style="display:none">
+  		<p></p>
+  	</div>
 </body>
 </html>

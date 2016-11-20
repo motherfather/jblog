@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="blog">
-	<select id="totalPost" parameterType="string" resultType="long">
+<mapper namespace="post">
+	<insert id="write" parameterType="postvo">
+	<selectKey keyProperty="no" resultType="long" order="BEFORE">
+		select post_seq.nextval from dual
+	</selectKey>
 		<![CDATA[
+			insert into post values(#{no }, #{categoryNo }, #{title }, #{content }, sysdate)
 		]]>
-	</select>
+	</insert>
 </mapper>

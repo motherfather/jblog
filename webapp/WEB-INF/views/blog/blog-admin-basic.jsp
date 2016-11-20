@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${infoBlog.title }</title>
-<Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
+<title>${list2[0].TITLE }</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/jblog.css">
 </head>
 <body>
 	<div id="container">
@@ -17,7 +17,7 @@
 				<c:import url="/WEB-INF/views/include/adminMenu.jsp">
 					<c:param name="menu" value="setup"/>
 				</c:import>
-				<form action="" method="post">
+				<form action="${pageContext.request.contextPath }/${userId }/setup" enctype="multipart/form-data" method="post">
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
@@ -25,15 +25,15 @@
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>
-			      			<td><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>      			
+			      			<td><img src="${pageContext.request.contextPath}/jblog/logo/${list2[0].LOGO }"></td>      			
 			      		</tr>      		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
-			      			<td><input type="file" name="logo-file"></td>      			
+			      			<td><input type="file" name="file"></td>      			
 			      		</tr>           		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
-			      			<td class="s"><input type="submit" value="기본설정 변경"></td>      			
+			      			<td class="s"><input type="submit" value="설정변경"></td>      			
 			      		</tr>           		
 			      	</table>
 				</form>

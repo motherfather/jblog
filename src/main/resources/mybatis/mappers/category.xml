@@ -8,9 +8,35 @@
 		]]>
 	</insert>
 	
-	<select id="listCate" parameterType="string" resultType="categoryvo">
+	<select id="categoryList" parameterType="string" resultType="map">
 		<![CDATA[
-			select * from category c, blog b, users u where u.no=b.users_no and b.users_no=c.blog_no and u.id=#{id }	
+			select c.NO cNo, c.NAME, c.DESCRIPTION, pNo
+			from CATEGORY c, users u, blog b, 
+			(SELECT CATEGORY_no, count(no) pNo 
+			FROM post GROUP BY category_no)p 
+			where c.no=p.category_no and u.no=b.USERS_NO
+			and b.USERS_NO=c.BLOG_NO and id=#{userId } order by cNo asc	
+		]]>
+	</select>
+	
+	<insert id="add" parameterType="categoryvo">
+		<selectKey keyProperty="no" resultType="long" order="BEFORE">
+			select category_seq.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into category values(#{no }, #{blogNo }, #{name }, #{description }, sysdate)
+		]]>
+	</insert>
+	
+	<select id="get" parameterType="long" resultType="categoryvo">
+		<![CDATA[
+			select * from CATEGORY where no=#{no }
+		]]>
+	</select>
+	
+	<select id="list" parameterType="long" resultType="categoryvo">
+		<![CDATA[
+			select * from CATEGORY where blog_no=#{blogNo }
 		]]>
 	</select>
 </mapper>
