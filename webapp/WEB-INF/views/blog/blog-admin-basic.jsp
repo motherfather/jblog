@@ -25,7 +25,7 @@
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>
-			      			<td><img src="${pageContext.request.contextPath}/jblog/logo/${list2[0].LOGO }"></td>      			
+			      			<td><img src="${pageContext.request.contextPath}/${userID }/logo/${list2[0].LOGO }"></td>      			
 			      		</tr>      		
 			      		<tr>
 			      			<td class="t">&nbsp;</td>

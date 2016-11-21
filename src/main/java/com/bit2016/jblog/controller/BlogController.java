@@ -15,14 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bit2016.jblog.service.BlogService;
 import com.bit2016.jblog.service.CategoryService;
-import com.bit2016.jblog.service.PostService;
 import com.bit2016.jblog.vo.BlogVo;
 import com.bit2016.jblog.vo.UserVo;
 import com.bit2016.security.Auth;
 import com.bit2016.security.AuthUser;
 
 @Controller
-@RequestMapping("/{userId}")
+@RequestMapping("/{userId:(?!assets).*}")
 public class BlogController {
 
 	@Autowired

@@ -54,7 +54,7 @@
 	<context:component-scan base-package="com.bit2016.jblog.controller" />
 
 	<!-- the mvc resources tag does the magic -->
-	<mvc:resources mapping="/jblog/logo/**" location="file:/upload/" />
+	<mvc:resources mapping="/${userID }/logo/**" location="file:/upload/" />
 
 	<!-- 기본 뷰 리졸버 -->
 	<bean id="viewResolver"
