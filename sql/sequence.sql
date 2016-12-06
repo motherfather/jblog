@@ -26,3 +26,5 @@ INCREMENT BY 1
 MAXVALUE 9999999999;
 
 DROP SEQUENCE comments_seq;
+
+commit;
